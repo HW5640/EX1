@@ -10,19 +10,17 @@ P5640FLAGS  = -L${P5640LIB}/lib -lP5640  -I${P5640LIB}
 GSLFLAGS    = -I${EBROOTGSL}/include/gsl  -I/usr/include/gsl -lgsl -lgslcblas
 
 
-all: RKnTest RKnDemo gsl_test duffing
+all: run1.1 run1.1gsl run1.2
 
-RKnTest:  RKnTest.cpp ${P5640LIB}/lib/libP5640.a
-	$(GXX) -o RKnTest RKnTest.cpp $(ROOTFLAGS) $(P5640FLAGS)
+run1.1:  run1.1.cpp ${P5640LIB}/lib/libP5640.a
+	$(GXX) -o run1.1 run1.1.cpp $(ROOTFLAGS) $(P5640FLAGS)
 
-RKnDemo:  RKnDemo.cpp ${P5640LIB}/lib/libP5640.a
-	$(GXX) -o RKnDemo RKnDemo.cpp $(ROOTFLAGS) $(P5640FLAGS)
+run1.1gsl: run1.1gsl.cpp
+	$(GXX) -orun1.1gsl run1.1gsl.cpp $(GSLFLAGS) $(ROOTFLAGS)
 
-gsl_test: gsl_test.cpp
-	$(GXX) -ogsl_test gsl_test.cpp $(GSLFLAGS)
+run1.2:  run1.2.cpp ${P5640LIB}/lib/libP5640.a
+	$(GXX) -o run1.2 run1.2.cpp $(ROOTFLAGS) $(P5640FLAGS)
 
-duffing:  duffing.cpp ${P5640LIB}/lib/libP5640.a
-	$(GXX) -o duffing duffing.cpp $(ROOTFLAGS) $(P5640FLAGS)
 
 clean:
-	rm -f RKnDemo RKnTest gsl_test Projectile.png *~
+	rm -f run1.1 run1.1gsl run1.2 *dat *root
