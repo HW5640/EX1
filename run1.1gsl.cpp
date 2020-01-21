@@ -70,6 +70,7 @@ int main (int argc, char *argv[])
   g1->Draw("AL");
   g2->Draw("L");
   g2->SetLineColor(kRed);
+  g1->SetTitle("Duffing Oscillator;Time;Position");
 
   gsl_odeiv2_driver_free(d);
 
